@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        text-align: center;
+    }
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    p {
+        color: #666;
+        margin-bottom: 40px;
+    }
+    .logout-btn {
+        background-color: #ff6347;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .logout-btn:hover {
+        background-color: #d2452c;
+    }
+</style>
+<body>
+<div class="container">
+    <h1>Welcome {{ username }} !</h1>
+    <p>You have successfully logged in with id {{ userid }}.</p>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+<script>
+    
+    function logout()
+    {
+        // Perform logout operation here, such as redirecting to a logout route
+        window.location.href = "/logout"; // Redirect to logout route
+    }
+</script>
+</body>
+</html>

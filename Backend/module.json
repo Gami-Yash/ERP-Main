@@ -1,0 +1,12 @@
+{
+  "Module": {
+    "ERP Admin": {   
+        "Submodules": [
+          "Finance Setup",
+          "User Permission",
+          "Statutory Setup"
+        ]
+      },
+      "Company Master":[]
+    }
+  }

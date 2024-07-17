@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typeahead Autosuggestion Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Typeahead Autosuggestion Example</h1>
+        <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+    </div>
+
+    <script>
+        // Define your dataset
+        var countries = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            // This is where you define your data source, in this case, an array of country names
+            local: ['United States', 'United Kingdom', 'Canada', 'Australia', 'Germany', 'France', 'Italy', 'Spain', 'Japan', 'China']
+        });
+
+        // Initialize Typeahead with the Bloodhound suggestion engine
+        $('#searchInput').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1 // Minimum characters to trigger suggestion
+        },
+        {
+            name: 'countries',
+            source: countries
+        });
+    </script>
+</body>
+</html>

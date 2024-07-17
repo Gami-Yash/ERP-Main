@@ -1,0 +1,313 @@
+{{!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"],
+        button.logout-btn {
+            width: calc(100% - 20px);
+            /* Adjusted width */
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover,
+        button.logout-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Make Data Tables</h1>
+    <form action="/submit" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" autocomplete="off" required><br><br>
+        <label for="sr">Sr:</label>
+        <input type="text" id="sr" name="sr" autocomplete="off" required><br><br>
+        <button type="submit">Submit</button>
+        <button class="logout-btn" onclick="logout()">Logout</button> <!-- Logout button -->
+    </form>
+</body>
+<script>
+    function logout() {
+        window.location.href = "/logout";
+    }
+</script>
+
+</html> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .tt-menu {
+            width: calc(100% - 20px);
+            /* Adjusted width */
+            margin-top: 5px;
+            /* Adjusted margin */
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tt-suggestion {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .tt-suggestion:hover {
+            background-color: #f1f1f1;
+        }
+
+        .tt-cursor {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .tt-highlight {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"],
+        button.logout-btn {
+            width: calc(100% - 20px);
+            /* Adjusted width */
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+
+        button[type="submit"]:hover,
+        button.logout-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* New styles for tabs */
+        .tab {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            background-color: #f1f1f1;
+            margin-top: 20px;
+        }
+
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .modal-content {
+            display: none;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .twitter-typeahead {
+            position: relative;
+            display: inline-block;
+            width: calc(100%);
+            /* Adjusted width */
+            margin-top: 5px;
+            /* Adjusted margin */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'insertTable')">Insert Table</button>
+        <button class="tablinks" onclick="openTab(event, 'insertFields')">Insert Fields</button>
+    </div>
+
+    <div id="insertTable" class="modal-content">
+        <h1>Insert Table</h1>
+        <form action="/submit" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" autocomplete="off" required><br><br>
+            <label for="sr">Sr:</label>
+            <input type="text" id="sr" name="sr" autocomplete="off" required><br><br>
+            <button type="submit">Submit</button>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </form>
+
+    </div>
+
+    <div id="insertFields" class="modal-content">
+        <h1>Insert Fields</h1>
+        <form action="/submitFields" method="post">
+            <label for="formName">Form Name:</label>
+            <input type="text" id="formName" name="formName" required><br><br>
+            <label for="fieldName">Field Name:</label>
+            <input type="text" id="fieldName" name="fieldName" autocomplete="off" required><br><br>
+            <label for="fieldType">Field Type:</label>
+            <input type="text" id="fieldType" name="fieldType" autocomplete="off" required><br><br>
+            <label for="sr">Sr No.</label>
+            <input type="text" id="fieldSr" name="fieldSr" autocomplete="off" required><br><br>
+            <button type="submit">Submit</button>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </form>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("modal-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementsByClassName("tablinks")[0].click();
+
+        function logout() {
+            window.location.href = "/logout";
+        }
+
+        fetch('/suggestion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                var suggestion = new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.whitespace,
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    local: data
+                });
+                $('#formName').typeahead({
+                    hint: false,
+                    highlight: false,
+                    minLength: 1
+                },
+                    {
+                        name: 'suggestion',
+                        source: suggestion
+                    });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+
+
+</body>
+
+</html>
+
+{{!-- console.log(data);
+const names = data.map(items => items.name)
+console.log(names); --}}
